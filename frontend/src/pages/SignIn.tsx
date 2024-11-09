@@ -42,10 +42,10 @@ const SignIn = () => {
           type="email"
           {...register("email", { required: "This field is required" })}
         />
+      </label>
         {errors.email && (
           <span className="text-red-500">{errors.email.message}</span>
         )}
-      </label>
       <label className="text-gray-700 text-sm font-bold flex-1">
         Password
         <input
@@ -59,10 +59,10 @@ const SignIn = () => {
             },
           })}
         />
+      </label>
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
         )}
-      </label>
       <span>
         <button
           type="submit"
