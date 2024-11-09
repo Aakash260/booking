@@ -80,7 +80,7 @@ router.get("/", VerifyToken, async (req: Request, res: Response) => {
     "/:hotelId",
     VerifyToken,
     upload.array("imageFiles"),
-    async (req: Request, res: Response) => {
+async (req: any, res:any) => {
       try {
         const updatedHotel: HotelType = req.body;
         updatedHotel.lastUpdated = new Date();
