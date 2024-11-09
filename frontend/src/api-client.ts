@@ -77,7 +77,7 @@ export const addMyHotel = async (hotelFormData: FormData) => {
     const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
       credentials: "include",
     });
-  
+   
     if (!response.ok) {
       throw new Error("Error fetching hotels");
     }

@@ -38,9 +38,9 @@ app.use('/api/auth',authRoute)
 app.use('/api/my-hotels',myHotelRoute)
 
 
-app.get("*",(req:Request,res:Response)=>{
-  res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"))
-})
+// app.get("*",(req:Request,res:Response)=>{
+//   res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"))
+// })
 
 app.listen(7000, () => {
   console.log(" http://localhost:7000");

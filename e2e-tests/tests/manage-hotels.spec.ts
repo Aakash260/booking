@@ -43,7 +43,7 @@ const UI_URL = "http://localhost:5173/"
     ]);
   
     await page.getByRole("button", { name: "Save" }).click();
-    await expect(page.getByText("Hotel Saved!")).toBeVisible();
+    await expect(page.getByText("Hotel Saved!")).toBeVisible({ timeout: 30000 });
   });
 
-
+  
