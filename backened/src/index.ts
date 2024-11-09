@@ -7,7 +7,15 @@ import authRoute from "./routes/auth.js";
 import cookieParser from "cookie-parser"
 import path from "path"
 import { fileURLToPath } from 'url';
- 
+import { v2 as cloudinary} from "cloudinary"
+import myHotelRoute from "./routes/my-hotels.js";
+
+cloudinary.config({
+  cloud_name:process.env.CLOUDINARY_NAME,
+  api_key:process.env.CLOUDINARY_KEY,
+  api_secret:process.env.CLOUDINARY_SECRET
+})
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 mongoose
@@ -23,10 +31,16 @@ app.use(cors({
   credentials:true
 }));
 
-app.use(express.static(path.join(__dirname,"../../frontend/dist")))
+ app.use(express.static(path.join(__dirname,"../../frontend/dist")))
 
 app.use('/api/users',userRoute)
 app.use('/api/auth',authRoute)
+app.use('/api/my-hotels',myHotelRoute)
+
+
+app.get("*",(req:Request,res:Response)=>{
+  res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"))
+})
 
 app.listen(7000, () => {
   console.log(" http://localhost:7000");
