@@ -1,3 +1,4 @@
+
 export type UserType = {
     _id: string;
     email: string;
@@ -51,3 +52,5 @@ export type UserType = {
     clientSecret: string;
     totalCost: number;
   };
+
+ 

@@ -9,7 +9,7 @@ import path from "path"
 import { fileURLToPath } from 'url';
 import { v2 as cloudinary} from "cloudinary"
 import myHotelRoute from "./routes/my-hotels.js";
-
+import hotelRoute from "./routes/hotels.js";
 cloudinary.config({
   cloud_name:process.env.CLOUDINARY_NAME,
   api_key:process.env.CLOUDINARY_KEY,
@@ -36,7 +36,7 @@ app.use(cors({
 app.use('/api/users',userRoute)
 app.use('/api/auth',authRoute)
 app.use('/api/my-hotels',myHotelRoute)
-
+app.use('/api/hotels',hotelRoute)
 
 // app.get("*",(req:Request,res:Response)=>{
 //   res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"))
