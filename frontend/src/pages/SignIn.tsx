@@ -2,13 +2,14 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../../context/AppContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 export type SignInForm = {
   email: string;
   password: string;
 };
-
 const SignIn = () => {
+  const location = useLocation()
   const navigate = useNavigate();
   const { showToast, refetch } = useAppContext();
   const {
@@ -21,7 +22,7 @@ const SignIn = () => {
     onSuccess: async () => {
       showToast({ message: "Sign In Successfully", type: "SUCCESS" });
       refetch();
-      navigate("/");
+      navigate(location.state?.from?.pathname || "/");
     },
     onError: (err: Error) => {
       showToast({ message: err.message, type: "ERROR" });

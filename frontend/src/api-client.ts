@@ -3,6 +3,9 @@ import { SignInForm } from "./pages/SignIn";
 import {HotelSearchResponse, HotelType} from "../../backened/src/shared/types"
 
 const API_BASE_URL =import.meta.env.VITE_API_BASE_URL||""
+ 
+
+
 
 export const register= async(FormData:RegisterForm) => {
 
