@@ -1,7 +1,7 @@
-// import { StrictMode } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
- import { BrowserRouter } from 'react-router-dom'
+ 
 import "./index.css"
 import {
   QueryClient,
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
   }
 })
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
+  <StrictMode>
   <QueryClientProvider client={queryClient}>
 <AppContextProvider>
 <SearchContextProvider>
@@ -28,5 +28,5 @@ createRoot(document.getElementById('root')!).render(
 </SearchContextProvider>
 </AppContextProvider>
 </QueryClientProvider>
-  </BrowserRouter>,
+  </StrictMode>,
 )
