@@ -33,10 +33,19 @@ export const SearchContextProvider = ({
     () =>
       new Date(sessionStorage.getItem("checkIn") || new Date().toISOString())
   );
-  const [checkOut, setCheckOut] = useState<Date>(
-    () =>
-      new Date(sessionStorage.getItem("checkOut") || new Date().toISOString())
-  );
+  const [checkOut, setCheckOut] = useState<Date>(() => {
+    const storedCheckOut = sessionStorage.getItem("checkOut");
+    if (storedCheckOut) {
+      return new Date(storedCheckOut);
+    }
+    // If no stored value, calculate 2 days after check-in
+    const defaultCheckIn = new Date(
+      sessionStorage.getItem("checkIn") || new Date().toISOString()
+    );
+    const twoDaysLater = new Date(defaultCheckIn);
+    twoDaysLater.setDate(defaultCheckIn.getDate() + 2);
+    return twoDaysLater;
+  });
   const [adultCount, setAdultCount] = useState<number>(() =>
     parseInt(sessionStorage.getItem("adultCount") || "1")
   );
