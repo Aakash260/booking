@@ -3,7 +3,26 @@ import User, { UserType } from "../models/user.js"; // Ensure your user model is
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
+import VerifyToken from "../middleware/auth.js";
 const router = express.Router();
+
+
+router.get("/me", VerifyToken, async (req: Request, res: Response) => {
+  const userId = req.userId;
+
+  try {
+    const user = await User.findById(userId).select("-password");
+    if (!user) {
+       res.status(400).json({ message: "User not found" });
+       return
+    }
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "something went wrong" });
+  }
+});
+
 
 router.post(
   "/register",

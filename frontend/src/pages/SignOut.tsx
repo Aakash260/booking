@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from 'react-query'
 import * as apiClient from "../api-client"
-import { useAppContext } from '../../context/AppContext'
+import { useAppContext } from '../context/AppContext'
 
 const SignOut = () => {
 const {showToast}=useAppContext()

@@ -10,11 +10,12 @@ import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import AddHotel from "./pages/AddHotel";
  
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "./context/AppContext";
 import MyHotels from "./pages/MyHotel";
 import EditHotel from "./forms/ManageHotelForm/EditHotel";
 import Search from "./pages/Search";
 import Detail from "./pages/Details";
+import Booking from "./pages/Booking";
 
 const App = () => {
   const {isLoggedIn}=useAppContext()
@@ -77,6 +78,14 @@ const App = () => {
               element={
                 <Layout>
                   <MyHotels />
+                </Layout>
+              }
+            />
+            <Route
+              path="/hotel/:hotelId/booking"
+              element={
+                <Layout>
+                  <Booking />
                 </Layout>
               }
             />

@@ -1,7 +1,13 @@
 import React, { useContext, useState } from 'react'
-import Toast from '../src/component/Toast';
+import Toast from '../component/Toast';
 import { useQuery } from 'react-query';
-import * as apiClient from "../src/api-client"
+import * as apiClient from "../api-client"
+import { loadStripe,Stripe } from '@stripe/stripe-js';
+
+const SRIPE_PUB_KEY= import.meta.env.VITE_STRIPE_PUB_KEY||''
+
+const stripePromise=loadStripe(SRIPE_PUB_KEY)
+
 type ToastMessage={
     message:string;
     type:"SUCCESS"|"ERROR"
@@ -10,6 +16,7 @@ type ToastMessage={
 type AppContext={
     showToast:(toastMessage:ToastMessage)=>void
     isLoggedIn:Boolean
+    stripePromise:Promise<Stripe | null>
     refetch :()=>void
 }
 
@@ -30,6 +37,7 @@ return (
             setToast(toastMessage);
         },
         isLoggedIn:!isError,
+        stripePromise,
         refetch 
     }}
     >
